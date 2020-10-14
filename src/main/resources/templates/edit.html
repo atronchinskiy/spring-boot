@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+<body>
+<form method="post" action="/admin/edit">
+    ID:
+    <div th:text="${user.id}"></div>
+    <input type="hidden" name="id" value="null" th:value="${user.id}"/>
+
+    Name: <input type="text" name="name" value="null" th:value="${user.name}"/>
+    LastName: <input type="text" name="lastName" value="null" th:value="${user.lastName}"/>
+    Email: <input type="text" name="email" value="null" th:value="${user.email}"/>
+    Password: <input type="text" name="password" value="null" th:value="${user.password}"/>
+
+    <input type="checkbox" name="admin" th:checked="${roleAdmin}"/> Admin
+    <input type="checkbox" name="user" th:checked="${roleUser}"/> User
+
+
+    <input type="submit" value="Edit user">
+
+    <!--        Name: <input type="text" name="name" value="null" th:value="${user.name}"/>-->
+
+    <!--        <input type="text" name="lastName" value= "th:${session.user.name}" >-->
+
+    <!--        <input class="form-control"
+                   type="text"
+                   th:field="${user.name}"/>-->
+
+</form>
+
+</body>
+</html>

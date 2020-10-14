@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <form method="POST">
+        Name: <input type="text" name="name"/>
+        LastName: <input type="text" name="lastName"/>
+        Email: <input type="text" name="email"/>
+        Passsword: <input type="text" name="password"/>
+        Role: <input type="checkbox" name="admin" value="ROLE_ADMIN">Admin
+        <input type="checkbox" name="user" value="ROLE_USER">User
+        <input type="submit" value="Add new user">
+    </form>
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Roles</th>
+        </tr>
+
+        <th:block th:each="user : ${users}">
+            <tr valign="top">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.password}"></td>
+
+                <!--вариант ленивой реализации вывода ролей в одну строку:-->
+                <!-- <td th:each="r : ${user.roles}" th:text="${r.role}"></td>-->
+
+                <td>
+                    <table>
+                        <th:block th:each="r : ${user.roles}">
+                            <tr valign="top">
+                                <td th:text="${r.role}">...</td>
+                            </tr>
+                        </th:block>
+                    </table>
+                </td>
+
+                <td>
+
+                    <form method="post" action="/delete">
+                        <input type="hidden" name="name" value="null" th:value="${user.name}">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+
+                <td>
+                    <form method="get" action="/admin/edit">
+                        <input type="hidden" name="name" value="null" th:value="${user.name}">
+                        <input type="submit" value="Edit">
+                    </form>
+                </td>
+            </tr>
+
+            <!--вариант использования ссылок, а не кнопок из формы для удаления и редактирования            -->
+            <!--                    <a th:href="@{/delete(name=${user.name})}"> <input type="submit" value="Delete"></a>-->
+            <!--                    <a th:href="@{/admin/edit(name=${user.name})}"> <input type="submit" value="Edit"></a>-->
+        </th:block>
+
+    </table>
+    <p></p>
+</head>
+<body>
+<form>
+    <a href="user">PageUser</a>
+</form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Hi</p>
+
+<div th:text="${users}"></div>
+
+<th:block th:each="user : ${users}">
+    <tr valign="top">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.password}"></td>
+    </tr>
+</th:block>
+
+<table>
+
+     <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>LastName</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>Role</th>
+          </tr>
+
+
+
+
+           <th:block th:each="user : ${users}">
+               <tr valign="top">
+                   <td th:text="${user.name}"></td>
+                   <td th:text="${user.lastName}"></td>
+                   <td th:text="${user.email}"></td>
+                   <td th:text="${user.password}"></td>
+
+                   <th:block th:each="role : ${user.roles}">
+                     <td th:text="${role.role}"></td>
+                   </th:block>
+
+               </tr>
+           </th:block>
+
+
+
+<!--    <th:block th:each="user : ${users}">
+        <tr>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.password}"></td>
+        </tr>
+    </th:block>-->
+
+ </table>
+
+</body>
+</html>

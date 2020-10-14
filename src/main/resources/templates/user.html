@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:Name="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<!--ID: ${user.id} <p />
+Name: ${user.name}<p />
+Last Name: ${user.lastName}<p />
+Email: ${user.email}<p />
+Passsword: ${user.password}<p />
+Role: ${user.role}-->
+
+
+<table>
+    <tr>
+        <th align="left"> ID:</th>
+        <th align="left">
+            <div th:text="${user.id}"></div>
+        </th>
+    </tr>
+    <tr>
+        <th align="left">Name:</th>
+        <th align="left">
+            <div th:text="${user.name}"></div>
+        </th>
+    </tr>
+    <tr>
+        <th align="left">Last Name:</th>
+        <th align="left">
+            <div th:text="${user.lastName}"></div>
+        </th>
+    </tr>
+    <tr>
+        <th align="left">Email:</th>
+        <th align="left">
+            <div th:text="${user.email}"></div>
+        </th>
+    </tr>
+    <tr>
+        <th align="left">Passsword:</th>
+        <th align="left">
+            <div th:text="${user.password}"></div>
+        </th>
+    </tr>
+    <tr>
+        <th align="left">Role:</th>
+        <th align="left">
+            <div th:text="${user.roles}"></div>
+        </th>
+    </tr>
+
+</table>
+
+<p></p>
+<form>
+    <a href="login">Login</a>
+</form>
+</body>
+</html>
