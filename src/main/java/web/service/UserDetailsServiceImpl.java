@@ -43,11 +43,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*UserDetails user = User.builder()
-                .username(userCustom.getUsername())
-                .password(userCustom.getPassword())
-                .roles(roleArray)
-                .build();*/
 
         UserDetails user = new org.springframework.security.core.userdetails.User(userCustom.getUsername(),
                         userCustom.getPassword(), roles);

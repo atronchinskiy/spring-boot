@@ -25,54 +25,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-/*        http.authorizeRequests()
-                .antMatchers("/main").hasRole("ADMIN")
-                //.antMatchers("/main/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/**").permitAll()
-                .and().formLogin()
-                .and().httpBasic();*/
-/*        http
-            .formLogin()
-                .loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .permitAll();
+        http
 
-        http
-                .authorizeRequests()
-                .antMatchers("/login").anonymous()
-                .antMatchers("/main").hasAnyRole("USER","ADMIN")
-                .anyRequest().authenticated();*/
-/*
-        http
-                .authorizeRequests()
-                //.antMatchers("/", "/main").permitAll()
-                .antMatchers("/main").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
                 .and()
-                .logout()
-                .permitAll();
-*/
-        http
-
-                .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .and()
 
                 .authorizeRequests()
-                    .antMatchers("/", "/main").permitAll()
-    //                .antMatchers("/admin*").hasRole("ADMIN")
-                    .antMatchers("/admin*").access("hasAuthority('ADMIN')")
-                    .anyRequest().authenticated()
-                    .and()
+                .antMatchers("/", "/main").permitAll()
+                .antMatchers("/admin*").access("hasAuthority('ADMIN')")
+                .anyRequest().authenticated()
+                .and()
 
                 .logout()
-                    .permitAll();
+                .permitAll();
     }
 
     @Bean

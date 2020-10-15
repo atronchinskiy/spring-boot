@@ -16,12 +16,9 @@ import web.model.Role;
 import web.model.UserCustom;
 import web.repo.RoleRopository;
 import web.repo.UserRepository;
-
-
 import java.util.*;
 
 @Controller
-@ComponentScan("web")
 public class AdminController {
 
     private RoleRopository roleService;
@@ -31,13 +28,6 @@ public class AdminController {
         this.roleService = roleService;
         this.userService = userService;
     }
-
-/*    @RequestMapping(
-            value = "login",
-            method = RequestMethod.POST)
-    public String postLoginPage(ModelMap modelMap) {
-        return "redirect:/admin";
-    }*/
 
     @RequestMapping(
             value = "/",
@@ -50,7 +40,6 @@ public class AdminController {
 
         for (GrantedAuthority g : grantedAuthorities) {
             if (g.getAuthority().equals("ADMIN")){
-//                return "admin";
                 return "redirect:/admin";
             }
         }
@@ -86,22 +75,4 @@ public class AdminController {
         userService.save(new UserCustom(name, lastName, email, hashedPassword, roleSet));
         return "redirect:/admin";
     }
-/*
-    @RequestMapping(
-            value = "delete",
-            method = RequestMethod.GET)
-    public String _deletePagePost(ModelMap modelMap, @RequestParam("name") String name) {
-        userService.delete(userService.findByName(name));
-        return "redirect:/admin";
-    }
-
-    @RequestMapping(
-            value = "delete",
-            method = RequestMethod.POST)
-    public String deletePagePost(ModelMap modelMap, @RequestParam("name") String name) {
-        userService.delete(userService.findByName(name));
-        return "redirect:/admin";
-    }
-*/
-
 }
