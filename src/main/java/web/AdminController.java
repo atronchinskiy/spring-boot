@@ -1,30 +1,26 @@
 package web;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.Role;
 import web.model.UserCustom;
-import web.repo.RoleRopository;
-import web.repo.UserRepository;
+import web.service.RoleService;
+import web.service.UserService;
+
 import java.util.*;
 
 @Controller
 public class AdminController {
 
-    private RoleRopository roleService;
-    private UserRepository userService;
+    private RoleService roleService;
+    private UserService userService;
 
-    public AdminController(RoleRopository roleService, UserRepository userService) {
+    public AdminController(RoleService roleService, UserService userService) {
         this.roleService = roleService;
         this.userService = userService;
     }
