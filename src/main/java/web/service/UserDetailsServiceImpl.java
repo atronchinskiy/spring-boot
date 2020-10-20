@@ -3,7 +3,6 @@ package web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,16 +12,17 @@ import web.model.Role;
 import web.model.UserCustom;
 import web.repo.UserRepository;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
-    public UserRepository userRepository;
+    public final UserService userServise;
+
+    public UserDetailsServiceImpl(UserService userServise) {
+        this.userServise = userServise;
+    }
 
     @Override
     @Transactional(readOnly = true)
@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Set<GrantedAuthority> roles = new HashSet();
 
         try {
-            userCustom = userRepository.findByName(username);
+            userCustom = userServise.findByName(username);
             int i = 0;
             for (Role role: userCustom.getRoles())
             {
